@@ -13,8 +13,14 @@
 # + Only worry about integer inputs (no floats, strings, etc.)
 #
 # This method should, in its final form, not do any output.
+require 'pry'
 
 def valid_date?(month, day, year)
-  #write your method here
-  return true
+  if month < 1 || month > 12
+    return FALSE
+  end
+
 end
+
+valid_date(23,0,0)
+binding.pry
