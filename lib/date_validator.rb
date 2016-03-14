@@ -21,6 +21,11 @@ def valid_date?(month, day, year)
   if year < 1880 || year > 2280
     return false
   end
+
+
+end
+
+=begin
 #handle february leap year posibility
   if month = 2
     if year % 4 != 0
@@ -52,8 +57,12 @@ def valid_date?(month, day, year)
       if day < 1 || day > 30
         return false
       end
+    when 2
+
     end
   end
   return true
 end
+
 valid_date?(3,40,2006)
+=end
