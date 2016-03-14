@@ -13,7 +13,6 @@
 # + Only worry about integer inputs (no floats, strings, etc.)
 #
 # This method should, in its final form, not do any output.
-require 'pry'
 
 def valid_date?(month, day, year)
   if month < 1 || month > 12
@@ -22,5 +21,21 @@ def valid_date?(month, day, year)
   if year < 1880 || year > 2280
     return false
   end
+  if month = 2
+    # leap year computation
+  else
+    case month
+    when 1, 3, 5, 7, 8, 10, 12
+      if day < 1 || day > 31
+        return false
+      end
+    when 4, 6, 9, 11
+      if day < 1 || day > 30
+        return false
+      end
+    end
+  end
+
   return true
 end
+valid_date?(3,40,2006)
