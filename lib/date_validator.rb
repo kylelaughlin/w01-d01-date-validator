@@ -15,37 +15,40 @@
 # This method should, in its final form, not do any output.
 
 def valid_date?(month, day, year)
+  #check for valid month
   if month < 1 || month > 12
     return false
   end
+  #check for valid year
   if year < 1880 || year > 2280
     return false
   end
+  #check for valid day
   case month
-  when 1, 3, 5, 7, 8, 10, 12
-    if day < 1 || day > 31
-      return false
-    end
-  when 4, 6, 9, 11
-    if day < 1 || day > 30
-      return false
-    end
-  when 2
-    leap_year = 0
-    if (year % 4 == 0 && year % 100 !=0) || year % 400 == 0
-      leap_year = 1
-    else
+    when 1, 3, 5, 7, 8, 10, 12
+      if day < 1 || day > 31
+        return false
+      end
+    when 4, 6, 9, 11
+      if day < 1 || day > 30
+        return false
+      end
+    when 2
       leap_year = 0
-    end
-    if leap_year == 1
-      if day < 1 || day > 29
-        return false
+      if (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
+        leap_year = 1
+      else
+        leap_year = 0
       end
-    else
-      if day < 1 || day > 28
-        return false
+      if leap_year == 1
+        if day < 1 || day > 29
+          return false
+        end
+      else
+        if day < 1 || day > 28
+          return false
+        end
       end
-    end
   end
   true
 end
