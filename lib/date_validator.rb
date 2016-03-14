@@ -17,10 +17,10 @@ require 'pry'
 
 def valid_date?(month, day, year)
   if month < 1 || month > 12
-    return FALSE
+    return false
   end
-
+  if year < 1880 || year > 2280
+    return false
+  end
+  return true
 end
-
-valid_date(23,0,0)
-binding.pry
