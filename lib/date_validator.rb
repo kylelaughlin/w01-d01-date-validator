@@ -30,9 +30,23 @@ def valid_date?(month, day, year)
     if day < 1 || day > 30
       return false
     end
-  end
-
-
+  when 2
+    leap_year = 0
+    if (year % 4 == 0 && year % 100 !=0) || year % 400 == 0
+      leap_year = 1
+    else
+      leap_year = 0
+    end
+    if leap_year == 1
+      if day < 1 || day > 29
+        return false
+      end
+    else
+      if day < 1 || day > 28
+        return false
+      end
+    end
+    true
 end
 
 =begin
