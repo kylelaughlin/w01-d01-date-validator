@@ -34,13 +34,13 @@ def valid_date?(month, day, year)
         return false
       end
     when 2
-      leap_year = 0
+      leap_year = false
       if (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
-        leap_year = 1
+        leap_year = true
       else
-        leap_year = 0
+        leap_year = false
       end
-      if leap_year == 1
+      if leap_year
         if day < 1 || day > 29
           return false
         end
