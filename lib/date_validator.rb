@@ -101,12 +101,12 @@ end
 #Returns true if the day checks come back true, false if the day is out of range
 def determine_number_days(month, day, year)
   case month
-    when 1, 3, 5, 7, 8, 10, 12
-      check_31_days(day)
-    when 4, 6, 9, 11
-      check_30_days(day)
-    when 2
-      check_feb_days(day, year)
+  when 1, 3, 5, 7, 8, 10, 12
+    check_31_days(day)
+  when 4, 6, 9, 11
+    check_30_days(day)
+  when 2
+    check_feb_days(day, year)
   end
 end
 
