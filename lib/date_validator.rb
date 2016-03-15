@@ -21,7 +21,7 @@ require 'pry'
 #
 #Returns true if the month is between 1 and 12 inclusive, false if not.
 def check_valid_month(month)
-  month >= 1 || month <= 12
+  month >= 1 && month <= 12
 end
 binding.pry
 #Checks if a year is between the allowed range: 1880  2280 inclusive
@@ -30,7 +30,7 @@ binding.pry
 #
 #Returns true if the month is within the range, false if not.
 def check_valid_year(year)
-  year >= 1880 || year <= 2280
+  year >= 1880 && year <= 2280
 end
 
 #Checks for valid days in months with 31 days.
@@ -39,7 +39,7 @@ end
 #
 #Returns true if the day is between 1 and 31.
 def check_31_days(day)
-  day >= 1 || day <= 31
+  day >= 1 && day <= 31
 end
 
 #Checks for valid days in months with 30 days.
@@ -48,7 +48,7 @@ end
 #
 #Returns true if the day is between 1 and 30.
 def check_30_days(day)
-  day >= 1 || day <= 30
+  day >= 1 && day <= 30
 end
 
 #Checks if a year is a leap year.
@@ -66,7 +66,7 @@ end
 #
 #Returns true if the day is between 1 and 29
 def check_feb_29_days(day)
-  day >= 1 || day <= 29
+  day >= 1 && day <= 29
 end
 
 
@@ -84,7 +84,7 @@ def valid_date?(month, day, year)
 end
 
 
-=begi
+=begin
 def valid_date?(month, day, year)
   #check for valid month
   if month < 1 || month > 12
