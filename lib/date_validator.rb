@@ -13,7 +13,7 @@
 # + Only worry about integer inputs (no floats, strings, etc.)
 #
 # This method should, in its final form, not do any output.
-require 'pry'
+
 
 #Checks if a month is between 1 and 12 inclusive
 #
@@ -23,7 +23,7 @@ require 'pry'
 def check_valid_month(month)
   month >= 1 && month <= 12
 end
-binding.pry
+
 #Checks if a year is between the allowed range: 1880  2280 inclusive
 #
 #year: integer representing the year
@@ -69,10 +69,30 @@ def check_feb_29_days(day)
   day >= 1 && day <= 29
 end
 
+#Checks if the day in february is between 1 & 28 days (non-leap year)
+#
+#day: integer representing a day of the month
+#
+#Returns true if the day is between 1 and 28
+def check_feb_28_days(day)
+  day >= 1 && day <= 28
+end
 
+#If the year is a leap year it calls the correct day check method
+#
+#day: integer representing a day of the month
+#year: integer representing a year
+#
+#Returns true if the day checks come back true, false if the day is out of range
+def check_feb_days(day, year)
+  if leap_year?(year)
+    check_feb_29_days(day)
+  else
+    check_feb_28_days(day)
+  end
+end
 
-
-def valid_date?(month, day, year)
+def deterime_number_days(month, day, year)
   case month
     when 1, 3, 5, 7, 8, 10, 12
       check_31_days(day)
@@ -81,6 +101,10 @@ def valid_date?(month, day, year)
     when 2
       check_feb_days(day, year)
   end
+end
+
+def valid_date?(month, day, year)
+deterime_number_days(month, day, year) && check_valid_month(month) && check_valid_year(year)
 end
 
 
