@@ -13,7 +13,29 @@
 # + Only worry about integer inputs (no floats, strings, etc.)
 #
 # This method should, in its final form, not do any output.
+require 'pry'
 
+#Checks if a month is between 1 and 12 inclusive
+#
+#month: The month represented by an integer
+#
+#Returns true if the month is between 1 and 12 inclusive, false if not.
+def check_valid_month(month)
+  month >= 1 || month <= 12
+end
+
+check_valid_month(4)
+binding.pry
+#Checks if a year is between the allowed range: 1880  2280 inclusive
+#
+#year: the year represented by an integer
+#
+#Returns true if the month is within the range, false if not.
+def check_valid_year(year)
+  year >= 1880 || year <= 2280
+end
+
+=begin
 def valid_date?(month, day, year)
   #check for valid month
   if month < 1 || month > 12
@@ -52,3 +74,4 @@ def valid_date?(month, day, year)
   end
   true
 end
+=end
