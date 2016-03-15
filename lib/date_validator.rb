@@ -92,7 +92,14 @@ def check_feb_days(day, year)
   end
 end
 
-def deterime_number_days(month, day, year)
+#Call the correct day check for each month's number of days
+#
+#month: integer representing the month of the year
+#day: integer representing a day of the month
+#year: integer representing a year
+#
+#Returns true if the day checks come back true, false if the day is out of range
+def determine_number_days(month, day, year)
   case month
     when 1, 3, 5, 7, 8, 10, 12
       check_31_days(day)
@@ -104,7 +111,7 @@ def deterime_number_days(month, day, year)
 end
 
 def valid_date?(month, day, year)
-deterime_number_days(month, day, year) && check_valid_month(month) && check_valid_year(year)
+determine_number_days(month, day, year) && check_valid_month(month) && check_valid_year(year)
 end
 
 
