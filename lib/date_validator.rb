@@ -110,6 +110,13 @@ def determine_number_days(month, day, year)
   end
 end
 
+#Pull together all checks to make final date validity determination
+#
+#month: integer representing the month of the year
+#day: integer representing a day of the month
+#year: integer representing a year
+#
+#Returns true if all checks come back true and the date is valid
 def valid_date?(month, day, year)
 determine_number_days(month, day, year) && check_valid_month(month) && check_valid_year(year)
 end
