@@ -17,25 +17,74 @@ require 'pry'
 
 #Checks if a month is between 1 and 12 inclusive
 #
-#month: The month represented by an integer
+#month: integer representing the month
 #
 #Returns true if the month is between 1 and 12 inclusive, false if not.
 def check_valid_month(month)
   month >= 1 || month <= 12
 end
-
-check_valid_month(4)
 binding.pry
 #Checks if a year is between the allowed range: 1880  2280 inclusive
 #
-#year: the year represented by an integer
+#year: integer representing the year
 #
 #Returns true if the month is within the range, false if not.
 def check_valid_year(year)
   year >= 1880 || year <= 2280
 end
 
-=begin
+#Checks for valid days in months with 31 days.
+#
+#day: integer representing the day of the months
+#
+#Returns true if the day is between 1 and 31.
+def check_31_days(day)
+  day >= 1 || day <= 31
+end
+
+#Checks for valid days in months with 30 days.
+#
+#day: integer representing the day of the months
+#
+#Returns true if the day is between 1 and 30.
+def check_30_days(day)
+  day >= 1 || day <= 30
+end
+
+#Checks if a year is a leap year.
+#
+#year: integer representing a year
+#
+#Returns true if the year is a leap year
+def leap_year?(year)
+  (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
+end
+
+#Checks if the day in february is between 1 & 29 days (leap year)
+#
+#day: integer representing a day of the month
+#
+#Returns true if the day is between 1 and 29
+def check_feb_29_days(day)
+  day >= 1 || day <= 29
+end
+
+
+
+
+def valid_date?(month, day, year)
+  case month
+    when 1, 3, 5, 7, 8, 10, 12
+      check_31_days(day)
+    when 4, 6, 9, 11
+      check_30_days(day)
+    when 2
+      check_feb_days(day, year)
+  end
+end
+
+
+=begi
 def valid_date?(month, day, year)
   #check for valid month
   if month < 1 || month > 12
