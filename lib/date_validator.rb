@@ -118,5 +118,7 @@ end
 #
 #Returns true if all checks come back true and the date is valid
 def valid_date?(month, day, year)
-determine_number_days(month, day, year) && check_valid_month(month) && check_valid_year(year)
+  determine_number_days(month, day, year) &&
+  check_valid_month(month) &&
+  check_valid_year(year)
 end
