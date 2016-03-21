@@ -13,112 +13,128 @@
 # + Only worry about integer inputs (no floats, strings, etc.)
 #
 # This method should, in its final form, not do any output.
+require 'pry'
 
+class DateValidator
 
-#Checks if a month is between 1 and 12 inclusive
-#
-#month: integer representing the month
-#
-#Returns true if the month is between 1 and 12 inclusive, false if not.
-def check_valid_month(month)
-  month >= 1 && month <= 12
-end
-
-#Checks if a year is between the allowed range: 1880  2280 inclusive
-#
-#year: integer representing the year
-#
-#Returns true if the month is within the range, false if not.
-def check_valid_year(year)
-  year >= 1880 && year <= 2280
-end
-
-#Checks for valid days in months with 31 days.
-#
-#day: integer representing the day of the months
-#
-#Returns true if the day is between 1 and 31.
-def check_31_days(day)
-  day >= 1 && day <= 31
-end
-
-#Checks for valid days in months with 30 days.
-#
-#day: integer representing the day of the months
-#
-#Returns true if the day is between 1 and 30.
-def check_30_days(day)
-  day >= 1 && day <= 30
-end
-
-#Checks if a year is a leap year.
-#
-#year: integer representing a year
-#
-#Returns true if the year is a leap year
-def leap_year?(year)
-  (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
-end
-
-#Checks if the day in february is between 1 & 29 days (leap year)
-#
-#day: integer representing a day of the month
-#
-#Returns true if the day is between 1 and 29
-def check_feb_29_days(day)
-  day >= 1 && day <= 29
-end
-
-#Checks if the day in february is between 1 & 28 days (non-leap year)
-#
-#day: integer representing a day of the month
-#
-#Returns true if the day is between 1 and 28
-def check_feb_28_days(day)
-  day >= 1 && day <= 28
-end
-
-#If the year is a leap year it calls the correct day check method
-#
-#day: integer representing a day of the month
-#year: integer representing a year
-#
-#Returns true if the day checks come back true, false if the day is out of range
-def check_feb_days(day, year)
-  if leap_year?(year)
-    check_feb_29_days(day)
-  else
-    check_feb_28_days(day)
+  def initialize(options)
+    @month = options[:month]
+    @day = options[:day]
+    @year = options[:year]
   end
-end
 
-#Call the correct day check for each month's number of days
-#
-#month: integer representing the month of the year
-#day: integer representing a day of the month
-#year: integer representing a year
-#
-#Returns true if the day checks come back true, false if the day is out of range
-def determine_number_days(month, day, year)
-  case month
-  when 1, 3, 5, 7, 8, 10, 12
-    check_31_days(day)
-  when 4, 6, 9, 11
-    check_30_days(day)
-  when 2
-    check_feb_days(day, year)
+  attr_accessor :month
+  attr_accessor :day
+  attr_accessor :year
+
+
+  #Checks if a month is between 1 and 12 inclusive
+  #
+  #month: integer representing the month
+  #
+  #Returns true if the month is between 1 and 12 inclusive, false if not.
+  def check_valid_month(month)
+    month >= 1 && month <= 12
   end
-end
 
-#Pull together all checks to make final date validity determination
-#
-#month: integer representing the month of the year
-#day: integer representing a day of the month
-#year: integer representing a year
-#
-#Returns true if all checks come back true and the date is valid
-def valid_date?(month, day, year)
-  determine_number_days(month, day, year) &&
-  check_valid_month(month) &&
-  check_valid_year(year)
+  #Checks if a year is between the allowed range: 1880  2280 inclusive
+  #
+  #year: integer representing the year
+  #
+  #Returns true if the month is within the range, false if not.
+  def check_valid_year(year)
+    year >= 1880 && year <= 2280
+  end
+
+  #Checks for valid days in months with 31 days.
+  #
+  #day: integer representing the day of the months
+  #
+  #Returns true if the day is between 1 and 31.
+  def check_31_days(day)
+    day >= 1 && day <= 31
+  end
+
+  #Checks for valid days in months with 30 days.
+  #
+  #day: integer representing the day of the months
+  #
+  #Returns true if the day is between 1 and 30.
+  def check_30_days(day)
+    day >= 1 && day <= 30
+  end
+
+  #Checks if a year is a leap year.
+  #
+  #year: integer representing a year
+  #
+  #Returns true if the year is a leap year
+  def leap_year?(year)
+    (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
+  end
+
+  #Checks if the day in february is between 1 & 29 days (leap year)
+  #
+  #day: integer representing a day of the month
+  #
+  #Returns true if the day is between 1 and 29
+  def check_feb_29_days(day)
+    day >= 1 && day <= 29
+  end
+
+  #Checks if the day in february is between 1 & 28 days (non-leap year)
+  #
+  #day: integer representing a day of the month
+  #
+  #Returns true if the day is between 1 and 28
+  def check_feb_28_days(day)
+    day >= 1 && day <= 28
+  end
+
+  #If the year is a leap year it calls the correct day check method
+  #
+  #day: integer representing a day of the month
+  #year: integer representing a year
+  #
+  #Returns true if the day checks come back true, false if the day is out of range
+  def check_feb_days(day, year)
+    if leap_year?(year)
+      check_feb_29_days(day)
+    else
+      check_feb_28_days(day)
+    end
+  end
+
+  #Call the correct day check for each month's number of days
+  #
+  #month: integer representing the month of the year
+  #day: integer representing a day of the month
+  #year: integer representing a year
+  #
+  #Returns true if the day checks come back true, false if the day is out of range
+  def determine_number_days(month, day, year)
+    case month
+    when 1, 3, 5, 7, 8, 10, 12
+      check_31_days(day)
+    when 4, 6, 9, 11
+      check_30_days(day)
+    when 2
+      check_feb_days(day, year)
+    end
+  end
+
+  #Pull together all checks to make final date validity determination
+  #
+  #month: integer representing the month of the year
+  #day: integer representing a day of the month
+  #year: integer representing a year
+  #
+  #Returns true if all checks come back true and the date is valid
+  def valid?(month=(@month), day=(@day), year=(@year))
+    determine_number_days(month, day, year) &&
+    check_valid_month(month) &&
+    check_valid_year(year)
+  end
+
 end
+binding.pry
